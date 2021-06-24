@@ -1,3 +1,5 @@
+package edu.task1;
+
 public class Model {
 
     private StringBuilder str = new StringBuilder();

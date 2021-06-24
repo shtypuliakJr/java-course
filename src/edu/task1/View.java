@@ -1,3 +1,5 @@
+package edu.task1;
+
 public class View {
 
     public static final String INPUT_DATA_INCORRECT = "Input is incorrect!";

@@ -1,3 +1,5 @@
+package edu.task1;
+
 import java.util.Scanner;
 
 public class Controller {
@@ -26,10 +28,10 @@ public class Controller {
             str = scanner.next();
             if (str.equals(View.HELLO) && !model.isFlagHello()) {
                 model.addWord(View.HELLO);
-                //view.printMessage(View.ADDED_HELLO);
+                //view.printMessage(edu.task1.View.ADDED_HELLO);
             } else if (str.equals(View.WORLD) && model.isFlagHello()) {
                 model.addWord(View.WORLD);
-                //view.printMessage(View.ADDED_WORLD);
+                //view.printMessage(edu.task1.View.ADDED_WORLD);
             } else {
                 view.printNeedfulInput(model.isFlagHello() ? View.WORLD : View.HELLO);
             }
