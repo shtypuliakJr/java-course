@@ -17,12 +17,12 @@ public class Controller {
 
         Scanner scanner = new Scanner(System.in);
         String line;
-        while (true) {
+        while (scanner.hasNext()) {
 
             line = scanner.nextLine();
             String[] words = line.split(" ");
 
-            if (words.length == 2) {
+            if (words.length == 2 && words[0].matches("[a-zA-Z]+") && words[1].matches("[a-z!]+")) {
                 model.addWord(words[0]);
                 model.addWord(words[1]);
                 if (model.isFlagHello() && model.isFlagWorld()) {
