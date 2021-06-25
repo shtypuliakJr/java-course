@@ -7,15 +7,25 @@ public class Model {
     private boolean flagHello = false;
     private boolean flagWorld = false;
 
-    public void setFlagHello(boolean flagHello) { this.flagHello = flagHello; }
+    public void setFlagHello(boolean flagHello) {
+        this.flagHello = flagHello;
+    }
 
-    public void setFlagWorld(boolean flagWorld) { this.flagWorld = flagWorld; }
+    public void setFlagWorld(boolean flagWorld) {
+        this.flagWorld = flagWorld;
+    }
 
-    public boolean isFlagHello() { return flagHello; }
+    public boolean isFlagHello() {
+        return flagHello;
+    }
 
-    public boolean isFlagWorld() { return flagWorld; }
+    public boolean isFlagWorld() {
+        return flagWorld;
+    }
 
-    public String getSentence() { return sentence.toString().trim(); }
+    public String getSentence() {
+        return sentence.toString().trim();
+    }
 
     public void deleteSentence() {
         this.sentence.delete(0, sentence.length());
@@ -24,10 +34,11 @@ public class Model {
     }
 
     public void addWord(String word) {
-        if (!flagHello && word.equals(View.HELLO)) {
-            sentence.append(word);
+        if (word.equals(View.HELLO)) {
+            sentence.append(View.HELLO);
             flagHello = true;
-        } else if (flagHello && word.equals(View.WORLD)) {
+        }
+        else if (word.equals(View.WORLD)) {
             sentence.append(" " + View.WORLD);
             flagWorld = true;
         }

@@ -16,17 +16,24 @@ public class Controller {
         view.printMessage(View.OUTPUT_TASK);
 
         Scanner scanner = new Scanner(System.in);
-
-        String str;
+        String line;
         while (true) {
-            model.addWord(scanner.next());
-            model.addWord(scanner.next());
-            if (model.isFlagHello() && model.isFlagWorld()) {
-                view.printMessage(model.getSentence());
-                break;
+
+            line = scanner.nextLine();
+            String[] words = line.split(" ");
+
+            if (words.length == 2) {
+                model.addWord(words[0]);
+                model.addWord(words[1]);
+                if (model.isFlagHello() && model.isFlagWorld()) {
+                    view.printMessage(model.getSentence());
+                    break;
+                } else {
+                    view.printNeedfulInput(model.isFlagHello() ? View.WORLD : View.HELLO);
+                    model.deleteSentence();
+                }
             } else {
-                view.printNeedfulInput(model.isFlagHello() ? View.WORLD : View.HELLO);
-                model.deleteSentence();
+                view.printNeedfulInput(View.REQUIRE_TWO_WORDS);
             }
         }
     }
