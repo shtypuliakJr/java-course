@@ -2,7 +2,7 @@ package edu.lesson2.GameRandom;
 
 import java.util.ArrayList;
 
-class View {
+public class View {
     private static final String MAIN_TASK = "A random number from 0 to 100 is given.\nYour task is to guess this number.";
     private static final String ENTER_NUMBER_RANGE = "Enter number from %s to %s:";
     private static final String HIDDEN_NUMBER_COMPARISON = "Hidden number is %s than %s";
