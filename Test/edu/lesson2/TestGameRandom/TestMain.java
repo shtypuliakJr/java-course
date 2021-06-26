@@ -1,4 +1,4 @@
-package lesson2.TestGameRandom;
+package edu.lesson2.TestGameRandom;
 
 import edu.lesson2.GameRandom.*;
 import org.junit.jupiter.api.*;
