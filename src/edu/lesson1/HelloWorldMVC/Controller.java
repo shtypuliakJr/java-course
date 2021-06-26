@@ -1,8 +1,8 @@
-package edu.task1;
+package edu.lesson1.HelloWorldMVC;
 
 import java.util.Scanner;
 
-public class Controller {
+class Controller {
     Model model;
     View view;
 

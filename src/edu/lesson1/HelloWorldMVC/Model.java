@@ -1,6 +1,6 @@
-package edu.task1;
+package edu.lesson1.HelloWorldMVC;
 
-public class Model {
+class Model {
 
     private StringBuilder sentence = new StringBuilder();
 

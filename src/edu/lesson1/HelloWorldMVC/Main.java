@@ -1,4 +1,4 @@
-package edu.task1;
+package edu.lesson1.HelloWorldMVC;
 
 public class Main {
     public static void main(String[] args) {

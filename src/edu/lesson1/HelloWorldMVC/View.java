@@ -1,6 +1,6 @@
-package edu.task1;
+package edu.lesson1.HelloWorldMVC;
 
-public class View {
+class View {
 
     public static final String INPUT_DATA_INCORRECT = "Input is incorrect.";
     public static final String HELLO = "Hello";
