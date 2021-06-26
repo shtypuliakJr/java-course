@@ -2,6 +2,7 @@ package edu.lesson2.GameRandom;
 
 import java.util.ArrayList;
 import java.util.Random;
+
 enum Comparison {
     GREATER,
     LESS,
@@ -13,12 +14,27 @@ enum Comparison {
         return name().toLowerCase();
     }
 }
+
 class Model {
     private ArrayList<Integer> arrayList = new ArrayList();
     private int hiddenNumber;
-    Model () {
-        int min = 0;
-        int max = 100;
+    private int min = 0;
+    private int max = 100;
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setBounds(Comparison comparison, int inputNumber) {
+        this.min = (comparison == Comparison.LESS) ? min : inputNumber;
+        this.max = (comparison == Comparison.GREATER) ? max : inputNumber;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    Model() {
         hiddenNumber = new Random().nextInt((max - min) + 1) + min;
     }
 
