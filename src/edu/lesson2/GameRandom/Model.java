@@ -44,6 +44,7 @@ public class Model {
         if (arrayList.contains(enteredNumber)) {
             return Comparison.IN_ARRAY;
         }
+
         arrayList.add(enteredNumber);
 
         if (enteredNumber == hiddenNumber) {

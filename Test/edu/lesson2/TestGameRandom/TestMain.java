@@ -15,7 +15,6 @@ public class TestMain {
     private Controller controller = new Controller(model, view);
 
     @Disabled
-    @ParameterizedTest
     @DisplayName("Check incorrect input for method 'checkInput'.")
     @ValueSource(strings = {"", " ", "120", "-219", "GG", "hello world!"})
     public void testCheckInputFalse(String input) {

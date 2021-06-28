@@ -28,30 +28,31 @@ public class Controller {
         view.printCurrentRange(min, max);
 
         while (scanner.hasNextLine() && (inputData = scanner.nextLine()) != null) {
-            if (processInput()) {
-                break;
-            }
-        }
-    }
 
-    public boolean processInput() {
-        countOfAllInputData++;
-        if (checkInput(inputData)) {
-            inputNumber = Integer.parseInt(inputData);
-            comparison = model.checkInputInArray(inputNumber);
-            if (comparison == Comparison.EQUALS) {
-                view.printResults(inputNumber, model.getArrayList(), countOfAllInputData);
-                return true;
-            } else if (comparison == Comparison.IN_ARRAY) {
-                view.printNumberAlreadyInArray(inputNumber);
-            } else {
-                if (model.setBounds(comparison, inputNumber)) {
-                    view.printProximityOfNumberToHiddenNumber(inputNumber, comparison.toString());
+            countOfAllInputData++;
+
+            if (checkInput(inputData)) {
+
+                inputNumber = Integer.parseInt(inputData);
+                comparison = model.checkInputInArray(inputNumber);
+
+                switch (comparison) {
+                    case EQUALS -> {
+                        view.printResults(inputNumber, model.getArrayList(), countOfAllInputData);
+                        return;
+                    }
+                    case IN_ARRAY -> {
+                        view.printNumberAlreadyInArray(inputNumber);
+                    }
+                    default -> {
+                        if (model.setBounds(comparison, inputNumber)) {
+                            view.printProximityOfNumberToHiddenNumber(inputNumber, comparison.toString());
+                        }
+                    }
                 }
             }
+            view.printCurrentRange(model.getMin(), model.getMax());
         }
-        view.printCurrentRange(model.getMin(), model.getMax());
-        return false;
     }
 
     public boolean checkInput(String inputData) {
@@ -60,10 +61,10 @@ public class Controller {
         }
         try {
             int number = Integer.parseInt(inputData);
-            if (number >= 0 && number <= 100) {
+            if (number >= model.getMin() && number <= model.getMax()) {
                 return true;
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             return false;
         }
         return false;
