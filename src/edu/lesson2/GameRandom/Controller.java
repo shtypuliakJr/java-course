@@ -6,7 +6,7 @@ public class Controller {
 
     private final Scanner scanner = new Scanner(System.in);
     private int countOfAllInputData = 0;
-
+    private int inputNumber;
     Model model;
     View view;
 
@@ -18,48 +18,53 @@ public class Controller {
     public void startGame() {
 
         String inputData;
-        int inputNumber;
-        Comparison comparison;
 
         view.printTask();
         view.printCurrentRange(model.getMin(), model.getMax());
 
         while (scanner.hasNextLine() && (inputData = scanner.nextLine()) != null) {
-
-            countOfAllInputData++;
-
-            if (checkInput(inputData)) {
-
-                inputNumber = Integer.parseInt(inputData);
-                comparison = model.checkInputInArray(inputNumber);
-
-                switch (comparison) {
-                    case EQUALS:
-                        view.printResults(inputNumber, model.getList(), countOfAllInputData);
-                        return;
-                    case IN_ARRAY:
-                        view.printNumberAlreadyInArray(inputNumber);
-                        break;
-                    default:
-                        if (model.setBounds(comparison, inputNumber)) {
-                            view.printProximityOfNumberToHiddenNumber(inputNumber, comparison.toString());
-                        }
-                        break;
-                }
+            if (processInput(inputData)) {
+                break;
             }
-            view.printCurrentRange(model.getMin(), model.getMax());
         }
+        view.printResults(inputNumber, model.getList(), countOfAllInputData);
     }
-//    public boolean processInput() {
-//
-//    }
+
+    public boolean processInput(String inputData) {
+
+        Comparison comparison;
+
+        countOfAllInputData++;
+
+        if (checkInput(inputData)) {
+
+            inputNumber = Integer.parseInt(inputData);
+            comparison = model.checkInputInArray(inputNumber);
+
+            switch (comparison) {
+                case EQUALS:
+                    return true;
+                case IN_ARRAY:
+                    view.printNumberAlreadyInArray(inputNumber);
+                    break;
+                default:
+                    if (model.isSetNewBounds(comparison, inputNumber)) {
+                        view.printProximityOfNumberToHiddenNumber(inputNumber, comparison.toString());
+                    }
+                    break;
+            }
+        }
+        view.printCurrentRange(model.getMin(), model.getMax());
+        return false;
+    }
+
     public boolean checkInput(String inputData) {
         if (inputData == null) {
             return false;
         }
         try {
             int number = Integer.parseInt(inputData);
-            if (number >= model.getMin() && number <= model.getMax()) {
+            if (number > model.getMin() && number < model.getMax()) {
                 return true;
             }
         } catch (Exception e) {

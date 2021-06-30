@@ -34,7 +34,7 @@ public class Model {
         return this.hiddenNumber;
     }
 
-    public boolean setBounds(Comparison comparison, int inputNumber) {
+    public boolean isSetNewBounds(Comparison comparison, int inputNumber) {
         if (inputNumber < max && inputNumber > min) {
             this.min = (comparison == Comparison.LESS) ? min : inputNumber;
             this.max = (comparison == Comparison.GREATER) ? max : inputNumber;

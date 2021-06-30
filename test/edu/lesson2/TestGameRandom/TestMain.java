@@ -28,10 +28,7 @@ public class TestMain {
 
     @Test
     public void testHiddenNumber() {
-        if (model.getHiddenNumber() < model.getMax() &&
-                model.getHiddenNumber() > model.getMin()) {
-            return;
-        } else {
+        if (!(model.getHiddenNumber() < model.getMax() && model.getHiddenNumber() > model.getMin())) {
             Assertions.fail();
         }
     }
@@ -39,14 +36,14 @@ public class TestMain {
     @ParameterizedTest
     @DisplayName("Check setBounds with correct input.")
     @ValueSource(ints = {20, 69, 42, 1})
-    public void testSetBoundsCorrect(int inputNumber) {
-        Assertions.assertTrue(model.setBounds(Comparison.GREATER, inputNumber));
+    public void testIsSetNewBoundsCorrect(int inputNumber) {
+        Assertions.assertTrue(model.isSetNewBounds(Comparison.GREATER, inputNumber));
     }
 
     @ParameterizedTest
     @DisplayName("Check setBounds with incorrect input.")
     @ValueSource(ints = {1200, 102, -10, 200, 0, 100})
-    public void testSetBoundsIncorrect(int inputNumber) {
-        Assertions.assertFalse(model.setBounds(Comparison.GREATER, inputNumber));
+    public void testIsSetNewBoundsIncorrect(int inputNumber) {
+        Assertions.assertFalse(model.isSetNewBounds(Comparison.GREATER, inputNumber));
     }
 }
