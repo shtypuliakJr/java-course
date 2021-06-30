@@ -5,11 +5,22 @@ import java.util.Random;
 
 public class Model {
 
-    private ArrayList<Integer> arrayList = new ArrayList();
+    private final ArrayList<Integer> arrayList = new ArrayList<>();
 
-    private int hiddenNumber;
-    private int min = 0;
-    private int max = 100;
+    private final int hiddenNumber;
+
+    private final int START_MIN = 0;
+    private final int START_MAX = 100;
+
+    private int min = START_MIN;
+    private int max = START_MAX;
+
+    public Model() {
+        // [0-100]
+        //hiddenNumber = new Random().nextInt((START_MAX - START_MIN) + 1) + START_MIN;
+        // [1-99]
+        hiddenNumber = (int) Math.ceil(Math.random() * (START_MAX - START_MIN - 1) + START_MIN);
+    }
 
     public int getMin() {
         return min;
@@ -30,10 +41,6 @@ public class Model {
             return true;
         }
         return false;
-    }
-
-    public Model() {
-        hiddenNumber = new Random().nextInt((max - min) + 1) + min;
     }
 
     public ArrayList<Integer> getArrayList() {
