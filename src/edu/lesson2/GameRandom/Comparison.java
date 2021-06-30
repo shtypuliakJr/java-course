@@ -1,6 +1,6 @@
 package edu.lesson2.GameRandom;
 
-enum Comparison {
+public enum Comparison {
     GREATER,
     LESS,
     EQUALS,
