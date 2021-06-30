@@ -8,15 +8,13 @@ public class View {
     private static final String HIDDEN_NUMBER_COMPARISON = "Hidden number is %s than %s";
     private static final String NUMBER_ALREADY_IN_ARRAY = "The number %s has already been entered earlier.";
 
-    private static final String NUMBER_EQUALS_TO_HIDDEN = """
-            Entered number %s equals to hidden number.
+    private static final String NUMBER_EQUALS_TO_HIDDEN = "\nEntered number %s equals to hidden number." + "\nYOU WIN! GG";
 
-            YOU WIN! GG""";
-    private static final String OUTPUT_STATISTIC = """
-            Your statistic:
-            Full count of inputs: %s
-            Count of correct inputs: %s
-            Your correct inputs: %s""";
+
+    private static final String OUTPUT_STATISTIC = "\nYour statistic:" +
+            "\nFull count of inputs: %s" +
+            "\nCount of correct inputs: %s" +
+            "\nYour correct inputs: %s";
 
 
     public void printTask() {

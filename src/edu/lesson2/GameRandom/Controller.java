@@ -34,24 +34,25 @@ public class Controller {
                 comparison = model.checkInputInArray(inputNumber);
 
                 switch (comparison) {
-                    case EQUALS -> {
+                    case EQUALS:
                         view.printResults(inputNumber, model.getList(), countOfAllInputData);
                         return;
-                    }
-                    case IN_ARRAY -> {
+                    case IN_ARRAY:
                         view.printNumberAlreadyInArray(inputNumber);
-                    }
-                    default -> {
+                        break;
+                    default:
                         if (model.setBounds(comparison, inputNumber)) {
                             view.printProximityOfNumberToHiddenNumber(inputNumber, comparison.toString());
                         }
-                    }
+                        break;
                 }
             }
             view.printCurrentRange(model.getMin(), model.getMax());
         }
     }
-
+//    public boolean processInput() {
+//
+//    }
     public boolean checkInput(String inputData) {
         if (inputData == null) {
             return false;
