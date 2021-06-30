@@ -1,11 +1,11 @@
 package edu.lesson2.GameRandom;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
 public class Model {
 
-    private final ArrayList<Integer> arrayList = new ArrayList<>();
+    private final List<Integer> list = new ArrayList<>();
 
     private final int hiddenNumber;
 
@@ -43,16 +43,16 @@ public class Model {
         return false;
     }
 
-    public ArrayList<Integer> getArrayList() {
-        return arrayList;
+    public List<Integer> getList() {
+        return list;
     }
 
     public Comparison checkInputInArray(int enteredNumber) {
-        if (arrayList.contains(enteredNumber)) {
+        if (list.contains(enteredNumber)) {
             return Comparison.IN_ARRAY;
         }
 
-        arrayList.add(enteredNumber);
+        list.add(enteredNumber);
 
         if (enteredNumber == hiddenNumber) {
             return Comparison.EQUALS;

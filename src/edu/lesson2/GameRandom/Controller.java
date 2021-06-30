@@ -1,17 +1,10 @@
 package edu.lesson2.GameRandom;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Controller {
 
-    private int min = 0, max = 100;
-    private Scanner scanner = new Scanner(System.in);
-    private String inputData;
-    private int inputNumber;
-    private Comparison comparison;
+    private final Scanner scanner = new Scanner(System.in);
     private int countOfAllInputData = 0;
 
     Model model;
@@ -24,8 +17,12 @@ public class Controller {
 
     public void startGame() {
 
+        String inputData;
+        int inputNumber;
+        Comparison comparison;
+
         view.printTask();
-        view.printCurrentRange(min, max);
+        view.printCurrentRange(model.getMin(), model.getMax());
 
         while (scanner.hasNextLine() && (inputData = scanner.nextLine()) != null) {
 
@@ -38,7 +35,7 @@ public class Controller {
 
                 switch (comparison) {
                     case EQUALS -> {
-                        view.printResults(inputNumber, model.getArrayList(), countOfAllInputData);
+                        view.printResults(inputNumber, model.getList(), countOfAllInputData);
                         return;
                     }
                     case IN_ARRAY -> {
@@ -56,7 +53,7 @@ public class Controller {
     }
 
     public boolean checkInput(String inputData) {
-        if (inputData.equals(null)) {
+        if (inputData == null) {
             return false;
         }
         try {
