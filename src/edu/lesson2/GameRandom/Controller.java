@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class Controller {
 
     private final Scanner scanner = new Scanner(System.in);
+
     private int countOfAllInputData = 0;
     private int inputNumber;
-    Model model;
-    View view;
+
+    private final Model model;
+    private final View view;
 
     public Controller(Model model, View view) {
         this.model = model;
@@ -17,26 +19,25 @@ public class Controller {
 
     public void startGame() {
 
-        String inputData;
-
         view.printTask();
-        view.printCurrentRange(model.getMin(), model.getMax());
+        view.printCurrentRange(model.getMinBound(), model.getMaxBound());
 
-        while (scanner.hasNextLine() && (inputData = scanner.nextLine()) != null) {
-            if (processInput(inputData)) {
+        while (scanner.hasNextLine()) {
+            if (isCorrectInput(scanner.nextLine())) {
                 break;
             }
         }
+
         view.printResults(inputNumber, model.getList(), countOfAllInputData);
     }
 
-    public boolean processInput(String inputData) {
+    public boolean isCorrectInput(String inputData) {
 
         Comparison comparison;
 
         countOfAllInputData++;
 
-        if (checkInput(inputData)) {
+        if (isNumberInsideBounds(inputData)) {
 
             inputNumber = Integer.parseInt(inputData);
             comparison = model.checkInputInArray(inputNumber);
@@ -54,22 +55,17 @@ public class Controller {
                     break;
             }
         }
-        view.printCurrentRange(model.getMin(), model.getMax());
+        view.printCurrentRange(model.getMinBound(), model.getMaxBound());
         return false;
     }
 
-    public boolean checkInput(String inputData) {
-        if (inputData == null) {
-            return false;
-        }
+    public boolean isNumberInsideBounds(String inputData) {
+
         try {
             int number = Integer.parseInt(inputData);
-            if (number > model.getMin() && number < model.getMax()) {
-                return true;
-            }
+            return number > model.getMinBound() && number < model.getMaxBound();
         } catch (Exception e) {
             return false;
         }
-        return false;
     }
 }

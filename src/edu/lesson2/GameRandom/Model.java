@@ -5,29 +5,31 @@ import java.util.List;
 
 public class Model {
 
-    private final List<Integer> list = new ArrayList<>();
+    private final int MIN_START = 0;
+    private final int MAX_START = 100;
 
     private final int hiddenNumber;
 
-    private final int START_MIN = 0;
-    private final int START_MAX = 100;
+    private int minBound;
+    private int maxBound;
 
-    private int min = START_MIN;
-    private int max = START_MAX;
+    private final List<Integer> list = new ArrayList<>();
 
     public Model() {
         // [0-100]
         //hiddenNumber = new Random().nextInt((START_MAX - START_MIN) + 1) + START_MIN;
         // [1-99]
-        hiddenNumber = (int) Math.ceil(Math.random() * (START_MAX - START_MIN - 1) + START_MIN);
+        this.hiddenNumber = (int) Math.ceil(Math.random() * (MAX_START - MIN_START - 1) + MIN_START);
+        this.minBound = MIN_START;
+        this.maxBound = MAX_START;
     }
 
-    public int getMin() {
-        return min;
+    public int getMinBound() {
+        return minBound;
     }
 
-    public int getMax() {
-        return max;
+    public int getMaxBound() {
+        return maxBound;
     }
 
     public int getHiddenNumber() {
@@ -35,9 +37,9 @@ public class Model {
     }
 
     public boolean isSetNewBounds(Comparison comparison, int inputNumber) {
-        if (inputNumber < max && inputNumber > min) {
-            this.min = (comparison == Comparison.LESS) ? min : inputNumber;
-            this.max = (comparison == Comparison.GREATER) ? max : inputNumber;
+        if (inputNumber < maxBound && inputNumber > minBound) {
+            this.minBound = (comparison == Comparison.LESS) ? minBound : inputNumber;
+            this.maxBound = (comparison == Comparison.GREATER) ? maxBound : inputNumber;
             return true;
         }
         return false;

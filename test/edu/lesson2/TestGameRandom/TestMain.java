@@ -16,19 +16,19 @@ public class TestMain {
     @DisplayName("Check incorrect input for method 'checkInput'.")
     @ValueSource(strings = {"", " ", "120", "-219", "GG", "hello world!"})
     public void testCheckInputFalse(String input) {
-        Assertions.assertFalse(controller.checkInput(input));
+        Assertions.assertFalse(controller.isNumberInsideBounds(input));
     }
 
     @ParameterizedTest
     @DisplayName("Check incorrect input for method 'checkInput'.")
     @ValueSource(strings = {"2", "90", "1", "100"})
     public void testCheckInputTrue(String input) {
-        Assertions.assertTrue(controller.checkInput(input));
+        Assertions.assertTrue(controller.isNumberInsideBounds(input));
     }
 
     @Test
     public void testHiddenNumber() {
-        if (!(model.getHiddenNumber() < model.getMax() && model.getHiddenNumber() > model.getMin())) {
+        if (!(model.getHiddenNumber() < model.getMaxBound() && model.getHiddenNumber() > model.getMinBound())) {
             Assertions.fail();
         }
     }

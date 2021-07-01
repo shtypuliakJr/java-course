@@ -12,7 +12,7 @@ public class View {
 
 
     private static final String OUTPUT_STATISTIC = "\nYour statistic:" +
-            "\nFull count of inputs: %s" +
+            "\nCount of all inputs: %s" +
             "\nCount of correct inputs: %s" +
             "\nYour correct inputs: %s";
 
