@@ -3,8 +3,7 @@ package edu.lesson2.GameRandom;
 public enum Comparison {
     GREATER,
     LESS,
-    EQUALS,
-    IN_ARRAY;
+    EQUALS;
 
     @Override
     public String toString() {

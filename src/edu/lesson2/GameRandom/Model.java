@@ -50,9 +50,6 @@ public class Model {
     }
 
     public Comparison checkInputInArray(int enteredNumber) {
-        if (list.contains(enteredNumber)) {
-            return Comparison.IN_ARRAY;
-        }
 
         list.add(enteredNumber);
 

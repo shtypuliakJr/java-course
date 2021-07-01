@@ -42,17 +42,10 @@ public class Controller {
             inputNumber = Integer.parseInt(inputData);
             comparison = model.checkInputInArray(inputNumber);
 
-            switch (comparison) {
-                case EQUALS:
-                    return true;
-                case IN_ARRAY:
-                    view.printNumberAlreadyInArray(inputNumber);
-                    break;
-                default:
-                    if (model.isSetNewBounds(comparison, inputNumber)) {
-                        view.printProximityOfNumberToHiddenNumber(inputNumber, comparison.toString());
-                    }
-                    break;
+            if (comparison.equals(Comparison.EQUALS)) {
+                return true;
+            } else if (model.isSetNewBounds(comparison, inputNumber)) {
+                view.printProximityOfNumberToHiddenNumber(inputNumber, comparison.toString());
             }
         }
         view.printCurrentRange(model.getMinBound(), model.getMaxBound());
