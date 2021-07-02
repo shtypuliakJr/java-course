@@ -20,45 +20,48 @@ public class Model {
         //hiddenNumber = new Random().nextInt((START_MAX - START_MIN) + 1) + START_MIN;
         // [1-99]
         this.hiddenNumber = (int) Math.ceil(Math.random() * (MAX_START - MIN_START - 1) + MIN_START);
+
         this.minBound = MIN_START;
         this.maxBound = MAX_START;
     }
 
     public int getMinBound() {
-        return minBound;
+        return this.minBound;
     }
 
     public int getMaxBound() {
-        return maxBound;
+        return this.maxBound;
     }
 
     public int getHiddenNumber() {
         return this.hiddenNumber;
     }
 
-    public boolean isSetNewBounds(Comparison comparison, int inputNumber) {
-        if (inputNumber < maxBound && inputNumber > minBound) {
-            this.minBound = (comparison == Comparison.LESS) ? minBound : inputNumber;
-            this.maxBound = (comparison == Comparison.GREATER) ? maxBound : inputNumber;
-            return true;
-        }
-        return false;
-    }
-
     public List<Integer> getList() {
         return list;
     }
 
-    public Comparison checkInputInArray(int enteredNumber) {
+    public Comparison checkInputNumber(int inputNumber) {
 
-        list.add(enteredNumber);
+        Comparison comparison;
 
-        if (enteredNumber == hiddenNumber) {
-            return Comparison.EQUALS;
-        } else if (enteredNumber > hiddenNumber) {
-            return Comparison.LESS;
+        list.add(inputNumber);
+
+        if (inputNumber == hiddenNumber) {
+            comparison = Comparison.EQUALS;
+        } else if (inputNumber > hiddenNumber) {
+            comparison = Comparison.LESS;
         } else {
-            return Comparison.GREATER;
+            comparison = Comparison.GREATER;
         }
+
+        this.setNewBounds(comparison, inputNumber);
+
+        return comparison;
+    }
+
+    private void setNewBounds(Comparison comparison, int inputNumber) {
+        this.minBound = (comparison == Comparison.LESS) ? minBound : inputNumber;
+        this.maxBound = (comparison == Comparison.GREATER) ? maxBound : inputNumber;
     }
 }

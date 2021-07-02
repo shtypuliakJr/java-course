@@ -6,11 +6,11 @@ public class Controller {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    private int countOfAllInputData = 0;
-    private int inputNumber;
-
     private final Model model;
     private final View view;
+
+    private int countOfAllInputData = 0;
+    private int inputNumber;
 
     public Controller(Model model, View view) {
         this.model = model;
@@ -20,7 +20,7 @@ public class Controller {
     public void startGame() {
 
         view.printTask();
-        view.printCurrentRange(model.getMinBound(), model.getMaxBound());
+        view.printCurrentBounds(model.getMinBound(), model.getMaxBound());
 
         while (scanner.hasNextLine()) {
             if (isCorrectInput(scanner.nextLine())) {
@@ -31,28 +31,29 @@ public class Controller {
         view.printResults(inputNumber, model.getList(), countOfAllInputData);
     }
 
-    public boolean isCorrectInput(String inputData) {
+    private boolean isCorrectInput(String inputData) {
 
         Comparison comparison;
 
         countOfAllInputData++;
 
-        if (isNumberInsideBounds(inputData)) {
+        if (isInsideBounds(inputData)) {
 
             inputNumber = Integer.parseInt(inputData);
-            comparison = model.checkInputInArray(inputNumber);
+            comparison = model.checkInputNumber(inputNumber);
 
             if (comparison.equals(Comparison.EQUALS)) {
                 return true;
-            } else if (model.isSetNewBounds(comparison, inputNumber)) {
-                view.printProximityOfNumberToHiddenNumber(inputNumber, comparison.toString());
+            } else {
+                view.printProximityOfNumberToHiddenNumber(inputNumber, comparison);
             }
         }
-        view.printCurrentRange(model.getMinBound(), model.getMaxBound());
+
+        view.printCurrentBounds(model.getMinBound(), model.getMaxBound());
         return false;
     }
 
-    public boolean isNumberInsideBounds(String inputData) {
+    private boolean isInsideBounds(String inputData) {
 
         try {
             int number = Integer.parseInt(inputData);
