@@ -43,7 +43,7 @@ public class TestGameRandomJUnit5 {
             isInsideBounds.setAccessible(true);
             Assertions.assertFalse((Boolean) isInsideBounds.invoke(controller, inputData));
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             Assertions.fail();
         }
     }
