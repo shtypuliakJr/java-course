@@ -3,12 +3,23 @@ package edu.lesson4.RegistrationProg.controllers;
 
 import edu.lesson4.RegistrationProg.models.UsersModel;
 import edu.lesson4.RegistrationProg.views.View;
-import edu.lesson4.RegistrationProg.notes.User;
+import edu.lesson4.RegistrationProg.user.User;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Arthur Shtypuliak
+ * @version 1.1
+ * @since 1.0
+ * {@link Controller} gets information from input and check it (validate).
+ * Have instance of {@link View} for displaying information.
+ * Methods in these class process input and validate it
+ * @see View
+ * @see User
+ * @see UsersModel
+ */
 public class Controller {
 
     private final View view;
@@ -31,6 +42,9 @@ public class Controller {
         view.printMessage(View.SUCCESSFUL_REGISTRATION);
     }
 
+    /**
+     * Process all input data and create new user using received data from console.
+     */
     private void processInput() {
 
         user = new User();
@@ -38,7 +52,7 @@ public class Controller {
         final String name = processUserName();
         final String surname = processUserSurname();
         final String patronymic = processUserPatronymic();
-        final String fullName = addUserFullName(name, surname, patronymic);
+        final String fullName = addUserFullName(name, surname);
         final String nickname = processUserNickname();
 
         user.setName(name);
@@ -48,6 +62,10 @@ public class Controller {
         user.setNickname(nickname);
     }
 
+    /**
+     * @param regex Regex string for pattern.
+     * @param dataType Used for displaying current required data type of user field {@link User}
+     */
     private String processData(final String regex, final String dataType) {
 
         String userData;
@@ -78,12 +96,9 @@ public class Controller {
         return processData(RegExpression.PATRONYMIC, "patronymic");
     }
 
-    private String addUserFullName(final String name, final String surname, final String patronymic) {
-        StringBuilder fullname = new StringBuilder().append(name)
-                                                    .append(" ")
-                                                    .append(surname)
-                                                    .append(" ")
-                                                    .append(patronymic);
+    private String addUserFullName(final String name, final String surname) {
+
+        StringBuilder fullname = new StringBuilder().append(surname).append(" ").append(name.charAt(0)).append(".");
 
         return fullname.toString();
     }

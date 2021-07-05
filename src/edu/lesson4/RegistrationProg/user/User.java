@@ -1,9 +1,17 @@
-package edu.lesson4.RegistrationProg.notes;
+package edu.lesson4.RegistrationProg.user;
 
 import edu.lesson4.RegistrationProg.enums.Group;
 
 import java.util.GregorianCalendar;
 
+/**
+ * @author Arthur Shtypuliak
+ * @version 1.1
+ * @since 1.0
+ * User is used for containing all information about one user.
+ * Used in {@link edu.lesson4.RegistrationProg.models.UsersModel}
+ * @see edu.lesson4.RegistrationProg.controllers.Controller
+ * */
 public class User {
 
     private String surname;

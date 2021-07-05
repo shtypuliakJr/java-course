@@ -1,5 +1,13 @@
-package edu.lesson4.RegistrationProg.notes;
+package edu.lesson4.RegistrationProg.user;
 
+
+/**
+ * @author Arthur Shtypuliak
+ * @version 1.1
+ * @since 1.0
+ * Address is used as container for all location info.
+ * @see User
+ */
 public class Address {
 
     private String index;

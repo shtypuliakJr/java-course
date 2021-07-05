@@ -1,5 +1,12 @@
 package edu.lesson4.RegistrationProg.enums;
 
+/**
+ * @author Arthur Shtypuliak
+ * @version 1.1
+ * @since 1.0
+ * Enum Group is used as field in User class.
+ * @see edu.lesson4.RegistrationProg.user.User
+ */
 public enum Group {
 
     FRIENDS("Friends"),
