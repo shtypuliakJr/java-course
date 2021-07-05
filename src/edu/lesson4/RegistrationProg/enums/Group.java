@@ -1,4 +1,4 @@
-package edu.lesson4.RegistrationProg;
+package edu.lesson4.RegistrationProg.enums;
 
 public enum Group {
 

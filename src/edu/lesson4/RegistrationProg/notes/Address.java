@@ -1,12 +1,12 @@
-package edu.lesson4.RegistrationProg;
+package edu.lesson4.RegistrationProg.notes;
 
 public class Address {
 
-    private final String index;
-    private final String city;
-    private final String street;
-    private final String homeNumber;
-    private final String apartmentNumber;
+    private String index;
+    private String city;
+    private String street;
+    private String homeNumber;
+    private String apartmentNumber;
 
     public Address(String index, String city, String street, String homeNumber, String apartmentNumber) {
         this.index = index;

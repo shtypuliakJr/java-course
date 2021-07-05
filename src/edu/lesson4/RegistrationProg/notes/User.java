@@ -1,11 +1,10 @@
 package edu.lesson4.RegistrationProg.notes;
 
-import edu.lesson4.RegistrationProg.Address;
-import edu.lesson4.RegistrationProg.Group;
+import edu.lesson4.RegistrationProg.enums.Group;
 
 import java.util.GregorianCalendar;
 
-public class Entry {
+public class User {
 
     private String surname;
     private String name;
