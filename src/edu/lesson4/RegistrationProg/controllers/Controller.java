@@ -6,7 +6,6 @@ import edu.lesson4.RegistrationProg.views.View;
 import edu.lesson4.RegistrationProg.notes.User;
 
 import java.util.Scanner;
-import java.util.jar.Pack200;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +13,7 @@ public class Controller {
 
     private final View view;
     private User user;
-    private UsersModel usersModel = new UsersModel();
+    private final UsersModel usersModel = new UsersModel();
 
     public Controller(View view, User user) {
         this.view = view;
@@ -88,6 +87,7 @@ public class Controller {
 
         return fullname.toString();
     }
+
     private String processUserNickname() {
         return processData(RegExpression.NICKNAME, "nickname");
     }

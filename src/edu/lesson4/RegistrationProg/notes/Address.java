@@ -35,4 +35,5 @@ public class Address {
     public String getApartmentNumber() {
         return apartmentNumber;
     }
+
 }
