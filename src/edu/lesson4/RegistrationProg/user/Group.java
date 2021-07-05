@@ -1,4 +1,4 @@
-package edu.lesson4.RegistrationProg.enums;
+package edu.lesson4.RegistrationProg.user;
 
 /**
  * @author Arthur Shtypuliak

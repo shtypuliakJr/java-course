@@ -1,7 +1,5 @@
 package edu.lesson4.RegistrationProg.user;
 
-import edu.lesson4.RegistrationProg.enums.Group;
-
 import java.util.GregorianCalendar;
 
 /**
