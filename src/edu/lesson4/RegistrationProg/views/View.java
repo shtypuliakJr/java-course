@@ -14,13 +14,8 @@ public class View {
     public static final String MAIN_TASK = "Enter all necessary information one by one.";
     public static final String SUCCESSFUL_REGISTRATION = "Successful registration";
 
-    /**
-     * String ENTER_DATA is used as default output for current task.
-     * Has special symbol '%s' which take  input parameter in {@link View#printCurrentTask(String)}}
-     *
-     * @see View#printCurrentTask(String)
-     */
     public static final String ENTER_DATA = "Enter %s: ";
+    public static final String WRONG_INPUT = "Wrong input. ";
 
     /**
      * Method for printing input message
@@ -41,4 +36,7 @@ public class View {
         System.out.printf("\n" + ENTER_DATA, dataType);
     }
 
+    public void printWrongInput(String dataType) {
+        System.out.printf(WRONG_INPUT + ENTER_DATA, dataType);
+    }
 }

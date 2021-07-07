@@ -1,8 +1,6 @@
-package edu.lesson4.RegistrationProg;
-
-import edu.lesson4.RegistrationProg.controllers.Controller;
-import edu.lesson4.RegistrationProg.models.Model;
-import edu.lesson4.RegistrationProg.views.View;
+import controllers.Controller;
+import models.Model;
+import views.View;
 
 /**
  * @author Arthur Shtypuliak
@@ -14,7 +12,6 @@ public class Main {
 
     /**
      * Entry point of program
-     *
      * @param args no input parameters
      */
     public static void main(String[] args) {

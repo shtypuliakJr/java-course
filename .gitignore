@@ -1,5 +1,8 @@
 # Project exclude paths
 /out/
 .idea
+
 Homework.iml
 .gitignore
+/task3.RegistrationProg/target/
+/task3.RegistrationProg/task3.RegistrationProg.iml

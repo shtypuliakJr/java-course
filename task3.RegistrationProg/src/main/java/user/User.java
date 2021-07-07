@@ -1,16 +1,16 @@
-package edu.lesson4.RegistrationProg.user;
+package user;
 
-import edu.lesson4.RegistrationProg.models.Model;
+import controllers.Controller;
 
 import java.util.GregorianCalendar;
 
 /**
  * @author Arthur Shtypuliak
  * @version 1.1
- * @see edu.lesson4.RegistrationProg.controllers.Controller
+ * @see Controller
  * @since 1.0
  * User is used for containing all information about one user.
- * Used in {@link Model}
+ * Used in {@link models.Model}
  */
 public class User {
 

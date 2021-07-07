@@ -1,7 +1,7 @@
 package edu.lesson4.RegistrationProg.controllers;
 
 
-import edu.lesson4.RegistrationProg.models.UsersModel;
+import edu.lesson4.RegistrationProg.models.Model;
 import edu.lesson4.RegistrationProg.views.View;
 import edu.lesson4.RegistrationProg.user.User;
 
@@ -18,51 +18,31 @@ import java.util.regex.Pattern;
  * Methods in these class process input and validate it
  * @see View
  * @see User
- * @see UsersModel
+ * @see Model
  */
 public class Controller {
 
     private final View view;
-    private User user;
-    private final UsersModel usersModel = new UsersModel();
+    private final Model model;
 
-    public Controller(View view, User user) {
+    public Controller(View view, Model model) {
         this.view = view;
-        this.user = user;
+        this.model = model;
     }
 
-    public void startRegistration() {
+    public void start() {
 
+        UserRegistrationForm userRegistrationForm = new UserRegistrationForm(new Scanner(System.in), view);
+
+        model.createUserList();
         view.printMessage(View.MAIN_TASK);
-
-        this.processInput();
-
-        usersModel.addUser(user);
-
+        model.addUser(userRegistrationForm.registerUser());
         view.printMessage(View.SUCCESSFUL_REGISTRATION);
+
     }
 
     /**
-     * Process all input data and create new user using received data from console.
-     */
-    private void processInput() {
-
-        user = new User();
-
-        final String name = processUserName();
-        final String surname = processUserSurname();
-        final String patronymic = processUserPatronymic();
-        final String fullName = addUserFullName(name, surname);
-        final String nickname = processUserNickname();
-
-        user.setName(name);
-        user.setSurname(surname);
-        user.setPatronymic(patronymic);
-        user.setFullName(fullName);
-        user.setNickname(nickname);
-    }
-
-    /**
+     * @deprecated
      * @param regex Regex string for pattern.
      * @param dataType Used for displaying current required data type of user field {@link User}
      */
@@ -82,28 +62,5 @@ public class Controller {
         } while (!matcher.matches());
 
         return userData;
-    }
-
-    private String processUserName() {
-        return processData(RegExpression.NAME, "name");
-    }
-
-    private String processUserSurname() {
-        return processData(RegExpression.SURNAME, "surname");
-    }
-
-    private String processUserPatronymic() {
-        return processData(RegExpression.PATRONYMIC, "patronymic");
-    }
-
-    private String addUserFullName(final String name, final String surname) {
-
-        StringBuilder fullname = new StringBuilder().append(surname).append(" ").append(name.charAt(0)).append(".");
-
-        return fullname.toString();
-    }
-
-    private String processUserNickname() {
-        return processData(RegExpression.NICKNAME, "nickname");
     }
 }
