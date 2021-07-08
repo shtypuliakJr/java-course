@@ -14,13 +14,13 @@ import java.util.Scanner;
 /**
  * @author Arthur Shtypuliak
  * @version 1.3
+ * @see View
+ * @see user.User
+ * @see Model
  * @since 1.0
  * {@link Controller} gets information from input and check it (validate).
  * Have instance of {@link View} for displaying information.
  * Methods in these class process input and validate it
- * @see View
- * @see user.User
- * @see Model
  */
 public class Controller {
 
@@ -35,29 +35,41 @@ public class Controller {
     public void startRegistration() {
 
         Scanner scanner = new Scanner(System.in);
-
         UserRegistrationForm userRegistrationForm = new UserRegistrationForm(scanner, view);
-
-        try {
-            view.setLocale(setLanguage(scanner));
-        } catch (LocaleSyntaxException e) {
-            e.printStackTrace();
-        }
         model.createUserList();
+
+        view.setLocale(getLocale(scanner));
+
         view.printMessage(TextConstant.MAIN_TASK);
+
         User user = userRegistrationForm.registerUser();
         model.addUser(user);
         System.out.println(user.toString());
 
         view.printMessage(TextConstant.SUCCESSFUL_REGISTRATION);
-
     }
 
-    public Locale setLanguage(Scanner scanner) throws LocaleSyntaxException {
+    public Locale getLocale(Scanner scanner) {
 
-        view.printEnterLanguage();
+        Locale locale;
 
-        String language = scanner.nextLine();
+        do {
+            view.printEnterLanguage();
+            locale = getLocaleFromInput(scanner.nextLine());
+        } while (locale == null);
+
+        return locale;
+    }
+
+    public Locale getLocaleFromInput(String dataInput) {
+        try {
+            return checkLanguageInput(dataInput);
+        } catch (LocaleSyntaxException ignored) {
+        }
+        return null;
+    }
+
+    public Locale checkLanguageInput(String language) throws LocaleSyntaxException {
 
         if (language.equals("en")) {
             return new Locale("en");

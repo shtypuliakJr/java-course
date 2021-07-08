@@ -68,12 +68,8 @@ public class User {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public void setFullName() {
-        this.fullName = surname + name + patronymic;
+        this.fullName = surname + " " + name.charAt(0) + "."  + patronymic.charAt(0) + "." ;
     }
 
     public String getNickname() {
