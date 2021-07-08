@@ -21,10 +21,14 @@ public class UserDataInput {
 
         view.printCurrentTask(dataType);
 
-        while (!(scanner.hasNext() && (userData = scanner.nextLine()).matches(regExpression))) {
+        while (!(checkUserDataInput(userData = scanner.nextLine(), regExpression))) {
             view.printWrongInput(dataType);
         }
 
         return userData;
+    }
+
+    public boolean checkUserDataInput(String userData, String regExpression) {
+        return userData.matches(regExpression);
     }
 }

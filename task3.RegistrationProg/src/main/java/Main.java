@@ -9,19 +9,27 @@ import views.View;
  * This is Main class of program (entry point)
  */
 public class Main {
-
     /**
      * Entry point of program
      * @param args no input parameters
      */
     public static void main(String[] args) {
+        Bootstrapper bootstrapper = new Bootstrapper(args);
+        bootstrapper.start();
+    }
 
-        Model model = new Model();
-        View view = new View();
-        Controller controller = new Controller(view, model);
+    public static class Bootstrapper {
 
-        controller.start();
+        public Bootstrapper(String[] args) {
 
+        }
+        public void start() {
+            Model model = new Model();
+            View view = new View();
+            Controller controller = new Controller(view, model);
+
+            controller.startRegistration();
+        }
     }
 }
 

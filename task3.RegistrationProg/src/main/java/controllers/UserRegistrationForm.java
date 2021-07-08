@@ -5,6 +5,7 @@ import user.User;
 import views.TextConstant;
 import views.View;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UserRegistrationForm {
@@ -14,6 +15,7 @@ public class UserRegistrationForm {
     public UserRegistrationForm(Scanner scanner, View view) {
         this.scanner = scanner;
         this.view = view;
+        view.setLocale(new Locale("en"));
     }
 
     public User registerUser() {

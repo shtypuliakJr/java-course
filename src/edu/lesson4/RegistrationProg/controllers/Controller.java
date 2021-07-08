@@ -2,8 +2,8 @@ package edu.lesson4.RegistrationProg.controllers;
 
 
 import edu.lesson4.RegistrationProg.models.Model;
-import edu.lesson4.RegistrationProg.views.View;
 import edu.lesson4.RegistrationProg.user.User;
+import edu.lesson4.RegistrationProg.views.View;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;

@@ -3,6 +3,7 @@ package controllers;
 
 import models.Model;
 import sun.util.locale.LocaleSyntaxException;
+import user.User;
 import views.TextConstant;
 import views.View;
 
@@ -31,7 +32,7 @@ public class Controller {
         this.model = model;
     }
 
-    public void start() {
+    public void startRegistration() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -44,8 +45,12 @@ public class Controller {
         }
         model.createUserList();
         view.printMessage(TextConstant.MAIN_TASK);
-        model.addUser(userRegistrationForm.registerUser());
+        User user = userRegistrationForm.registerUser();
+        model.addUser(user);
+        System.out.println(user.toString());
+
         view.printMessage(TextConstant.SUCCESSFUL_REGISTRATION);
+
     }
 
     public Locale setLanguage(Scanner scanner) throws LocaleSyntaxException {

@@ -1,6 +1,8 @@
 package views;
 
 public interface TextConstant {
+    //tofu
+    String LANGUAGE_SET = "Please, enter language: \uD83D\uDC7F";
 
     String MAIN_TASK = "input.info.start.task.data";
     String SUCCESSFUL_REGISTRATION = "input.info.end.success.data";

@@ -14,8 +14,8 @@ import java.util.GregorianCalendar;
  */
 public class User {
 
-    private String surname = null;
     private String name = null;
+    private String surname = null;
     private String patronymic = null;
 
     private String fullName = null;
@@ -82,6 +82,15 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer userData = new StringBuffer().append("User data:")
+                                                        .append("\n+ FullName = ").append(fullName)
+                                                        .append("\n+ Nickname = ").append(nickname)
+                                                        .append("\n+ Email = ").append(email);
+        return userData.toString();
     }
 }
 

@@ -3,7 +3,6 @@ package edu.lesson4.RegistrationProg.controllers;
 import edu.lesson4.RegistrationProg.user.User;
 import edu.lesson4.RegistrationProg.views.View;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.Scanner;
 
 public class UserRegistrationForm {

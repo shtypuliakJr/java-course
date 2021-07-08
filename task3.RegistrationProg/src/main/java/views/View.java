@@ -29,7 +29,7 @@ public class View {
      * @param message String message, which will be output (used at the beginning of running program and at hte end)
      */
     public void printMessage(String message) {
-        System.out.println(bundle.getString(message));
+        System.out.println("\n" + bundle.getString(message));
     }
 
     /**
@@ -47,6 +47,6 @@ public class View {
     }
 
     public void printEnterLanguage() {
-        System.out.print("Please, enter language: ");
+        System.out.print(LANGUAGE_SET);
     }
 }

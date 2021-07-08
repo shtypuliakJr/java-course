@@ -5,8 +5,6 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.Timeout;
 
-import static org.junit.Assert.*;
-
 public class TestArithmetics {
     private static Arithmetics a;
 
