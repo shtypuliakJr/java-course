@@ -38,33 +38,34 @@ public class Controller {
         UserRegistrationForm userRegistrationForm = new UserRegistrationForm(scanner, view);
         model.createUserList();
 
-        view.setLocale(getLocale(scanner));
+        view.setLocale(getLocaleFromInput(scanner));
 
         view.printMessage(TextConstant.MAIN_TASK);
 
         User user = userRegistrationForm.registerUser();
         model.addUser(user);
-        System.out.println(user.toString());
+        view.printUserData(user);
 
         view.printMessage(TextConstant.SUCCESSFUL_REGISTRATION);
     }
 
-    public Locale getLocale(Scanner scanner) {
+    public Locale getLocaleFromInput(Scanner scanner) {
 
         Locale locale;
 
         do {
             view.printEnterLanguage();
-            locale = getLocaleFromInput(scanner.nextLine());
+            locale = getLocale(scanner.nextLine());
         } while (locale == null);
 
         return locale;
     }
 
-    public Locale getLocaleFromInput(String dataInput) {
+    public Locale getLocale(String dataInput) {
         try {
             return checkLanguageInput(dataInput);
-        } catch (LocaleSyntaxException ignored) {
+        } catch (LocaleSyntaxException exception) {
+            view.printWrongLocale(exception.getMessage());
         }
         return null;
     }

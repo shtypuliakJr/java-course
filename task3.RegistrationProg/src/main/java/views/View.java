@@ -1,6 +1,7 @@
 package views;
 
 import controllers.Controller;
+import user.User;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -48,5 +49,11 @@ public class View {
 
     public void printEnterLanguage() {
         System.out.print(LANGUAGE_SET);
+    }
+    public void printUserData(User user) {
+        System.out.println("\n" + user.toString());
+    }
+    public void printWrongLocale(String message) {
+        System.out.println(message);
     }
 }
