@@ -3,12 +3,10 @@ package controllers;
 
 import models.Model;
 import models.exception.LoginExistException;
-import sun.util.locale.LocaleSyntaxException;
 import models.user.User;
 import views.TextConstant;
 import views.View;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -16,7 +14,7 @@ import java.util.Scanner;
  * @author Arthur Shtypuliak
  * @version 1.3
  * @see View
- * @see models.user.User
+ * @see User
  * @see Model
  * @since 1.0
  * {@link Controller} gets information from input and check it (validate).

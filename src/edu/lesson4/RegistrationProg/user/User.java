@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
  * @version 1.1
  * @see edu.lesson4.RegistrationProg.controllers.Controller
  * @since 1.0
- * User is used for containing all information about one models.user.
+ * User is used for containing all information about one models.models.user.
  * Used in {@link Model}
  */
 public class User {

@@ -2,8 +2,6 @@ import controllers.Controller;
 import models.Model;
 import views.View;
 
-import java.util.Locale;
-
 /**
  * @author Arthur Shtypuliak
  * @version 1.1

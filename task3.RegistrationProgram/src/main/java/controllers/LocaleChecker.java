@@ -1,6 +1,6 @@
 package controllers;
 
-import sun.util.locale.LocaleSyntaxException;
+import controllers.exceptions.LocaleSyntaxException;
 import views.TextConstant;
 import views.View;
 

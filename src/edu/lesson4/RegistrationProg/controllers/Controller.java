@@ -44,7 +44,7 @@ public class Controller {
     /**
      * @deprecated
      * @param regex Regex string for pattern.
-     * @param dataType Used for displaying current required data type of models.user field {@link User}
+     * @param dataType Used for displaying current required data type of models.models.user field {@link User}
      */
     private String processData(final String regex, final String dataType) {
 
