@@ -3,6 +3,8 @@
 /task2.GameRandom/
 /task1.HelloWorld/
 /other/
+/out/
 
 .gitignore
 Tasks.txt
+Homework.iml
