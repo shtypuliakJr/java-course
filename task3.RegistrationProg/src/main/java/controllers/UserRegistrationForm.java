@@ -1,11 +1,10 @@
 package controllers;
 
 
-import user.User;
+import models.user.User;
 import views.TextConstant;
 import views.View;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class UserRegistrationForm {
@@ -15,17 +14,17 @@ public class UserRegistrationForm {
     public UserRegistrationForm(Scanner scanner, View view) {
         this.scanner = scanner;
         this.view = view;
-        view.setLocale(new Locale("en"));
     }
 
     public User registerUser() {
 
-        UserDataInput userDataInput = new UserDataInput(scanner, view);
+        UserDataChecker userDataChecker = new UserDataChecker(scanner, view);
 
-        final String name = userDataInput.getUserDataInput(RegExpression.NAME, TextConstant.DATA_TYPE_NAME);
-        final String surname = userDataInput.getUserDataInput(RegExpression.SURNAME, TextConstant.DATA_TYPE_SURNAME);
-        final String patronymic = userDataInput.getUserDataInput(RegExpression.PATRONYMIC, TextConstant.DATA_TYPE_PATRONYMIC);
-        final String nickname = userDataInput.getUserDataInput(RegExpression.NICKNAME, TextConstant.DATA_TYPE_NICKNAME);
+        final String name = userDataChecker.getUserDataInput(RegExpression.NAME, TextConstant.DATA_TYPE_NAME);
+        final String surname = userDataChecker.getUserDataInput(RegExpression.SURNAME, TextConstant.DATA_TYPE_SURNAME);
+        final String patronymic = userDataChecker.getUserDataInput(RegExpression.PATRONYMIC, TextConstant.DATA_TYPE_PATRONYMIC);
+        final String nickname = userDataChecker.getUserDataInput(RegExpression.LOGIN, TextConstant.DATA_TYPE_LOGIN);
+        final String email = userDataChecker.getUserDataInput(RegExpression.EMAIL, TextConstant.DATA_TYPE_EMAIL);
 
         User user = new User();
 
@@ -33,8 +32,10 @@ public class UserRegistrationForm {
         user.setSurname(surname);
         user.setPatronymic(patronymic);
         user.setFullName();
-        user.setNickname(nickname);
+        user.setLogin(nickname);
+        user.setEmail(email);
 
         return user;
     }
+
 }

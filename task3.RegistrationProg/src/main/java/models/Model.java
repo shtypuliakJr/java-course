@@ -1,9 +1,8 @@
 package models;
 
-import user.User;
+import models.exception.LoginExistException;
+import models.user.User;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Arthur Shtypuliak
@@ -13,21 +12,27 @@ import java.util.Map;
  * UserModel is used as model part of program, which contains all users and process them
  */
 public class Model {
-
-    private int userId = 0;
-
-    protected Map<Integer, User> usersList;
-
-    public void addUser(User user) {
-
-        usersList.put(generateUserID(), user);
+    public boolean addUser(User user) throws LoginExistException {
+        return checkUserLoginInDB(user);
     }
 
-    private int generateUserID() {
-        return userId++;
+    public boolean checkUserLoginInDB(User user) throws LoginExistException {
+
+        if (checkLoginIsNotExist(user.getLogin())) {
+            // add user
+
+            return true;
+        }
+
+        throw new LoginExistException();
     }
 
-    public void createUserList() {
-        this.usersList = new HashMap<>();
+    public static boolean checkLoginIsNotExist(String loginData) {
+        for (UserDB user : UserDB.values()) {
+            if (user.getLogin().equals(loginData)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

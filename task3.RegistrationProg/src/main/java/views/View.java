@@ -1,12 +1,10 @@
 package views;
 
 import controllers.Controller;
-import user.User;
+import models.user.User;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import static views.TextConstant.*;
 
 /**
  * @author Arthur Shtypuliak
@@ -17,43 +15,44 @@ import static views.TextConstant.*;
  */
 public class View {
 
-    static String MESSAGES_BUNDLE_NAME = "messages";
+    private static final String MESSAGES_BUNDLE_NAME = "messages";
 
-    private ResourceBundle bundle = ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME, new Locale("en"));
+    private static ResourceBundle bundle = ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME, new Locale("en"));
 
-    public void setLocale(Locale locale) {
+    public static void setLocale(Locale locale) {
         bundle = ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME, locale);
     }
-    /**
-     * Method for printing input message
-     *
-     * @param message String message, which will be output (used at the beginning of running program and at hte end)
-     */
-    public void printMessage(String message) {
+
+    public void printLocaleTask(String message) {
+        System.out.print(bundle.getString(message) + " ");
+    }
+
+    public void printMainTask(String message) {
         System.out.println("\n" + bundle.getString(message));
     }
 
-    /**
-     * Method for printing current task.
-     *
-     * @param dataType String value, which is used for displaying current required information type of data.
-     * @see TextConstant
-     */
-    public void printCurrentTask(String dataType) {
-        System.out.printf("\n" + bundle.getString(ENTER_DATA) + " ", bundle.getString(dataType));
+    public void printCurrentTask(String task, String dataType) {
+        System.out.printf("\n" + bundle.getString(task) + " ", bundle.getString(dataType));
+    }
+
+    public void printSuccessfulRegistration(String message) {
+        System.out.println("\n\n" + bundle.getString(message));
     }
 
     public void printWrongInput(String dataType) {
-        System.out.printf(bundle.getString(WRONG_INPUT) + " " + bundle.getString(ENTER_DATA), bundle.getString(dataType));
+        System.out.printf(bundle.getString(TextConstant.WRONG_INPUT) + " " + bundle.getString(TextConstant.ENTER_DATA), bundle.getString(dataType));
     }
 
-    public void printEnterLanguage() {
-        System.out.print(LANGUAGE_SET);
+    public void printLoginIsTaken(String message) {
+        System.out.print("\n" + bundle.getString(message));
     }
+
     public void printUserData(User user) {
-        System.out.println("\n" + user.toString());
-    }
-    public void printWrongLocale(String message) {
-        System.out.println(message);
+        StringBuffer userInfo
+                = new StringBuffer().append("\n").append(bundle.getString(TextConstant.DATA_OUTPUT_TYPE_USER)).append("\n")
+                .append("* " + bundle.getString(TextConstant.DATA_OUTPUT_FULLNAME_USER) + ": ").append(user.getFullName()).append("\n")
+                .append("* " + bundle.getString(TextConstant.DATA_OUTPUT_LOGIN_USER) + ": ").append(user.getLogin()).append("\n")
+                .append("* " + bundle.getString(TextConstant.DATA_OUTPUT_EMAIL_USER) + ": ").append(user.getEmail()).append("\n");
+        System.out.println(userInfo);
     }
 }

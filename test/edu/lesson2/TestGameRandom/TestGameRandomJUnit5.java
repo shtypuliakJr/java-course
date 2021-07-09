@@ -1,8 +1,11 @@
 package edu.lesson2.TestGameRandom;
 
-import edu.lesson2.GameRandom.*;
-import org.junit.jupiter.api.*;
-
+import edu.lesson2.GameRandom.Controller;
+import edu.lesson2.GameRandom.Model;
+import edu.lesson2.GameRandom.View;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

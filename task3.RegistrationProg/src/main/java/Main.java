@@ -2,6 +2,8 @@ import controllers.Controller;
 import models.Model;
 import views.View;
 
+import java.util.Locale;
+
 /**
  * @author Arthur Shtypuliak
  * @version 1.1
@@ -11,6 +13,7 @@ import views.View;
 public class Main {
     /**
      * Entry point of program
+     *
      * @param args no input parameters
      */
     public static void main(String[] args) {
@@ -19,10 +22,12 @@ public class Main {
     }
 
     public static class Bootstrapper {
+        String[] args;
 
         public Bootstrapper(String[] args) {
-
+            this.args = args;
         }
+
         public void start() {
             Model model = new Model();
             View view = new View();

@@ -1,4 +1,4 @@
-package user;
+package models.user;
 
 import controllers.Controller;
 
@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
  * @version 1.1
  * @see Controller
  * @since 1.0
- * User is used for containing all information about one user.
+ * User is used for containing all information about one models.user.
  * Used in {@link models.Model}
  */
 public class User {
@@ -20,7 +20,7 @@ public class User {
 
     private String fullName = null;
 
-    private String nickname = null;
+    private String login = null;
 
     private String comment = null;
 
@@ -72,21 +72,21 @@ public class User {
         this.fullName = surname + " " + name.charAt(0) + "."  + patronymic.charAt(0) + "." ;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getLogin() {
+        return login;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    @Override
-    public String toString() {
-        StringBuffer userData = new StringBuffer().append("User data:")
-                                                        .append("\n+ FullName = ").append(fullName)
-                                                        .append("\n+ Nickname = ").append(nickname)
-                                                        .append("\n+ Email = ").append(email);
-        return userData.toString();
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
 }
 

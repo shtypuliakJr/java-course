@@ -1,0 +1,15 @@
+1) Добавить новые рег. выражения  ++++
+4) Добавить поддержку укр. выражений  ++++
+5) Use pattern Builder ++++
+6) Refactoring ++++
+7) Add javadoc ++++
+8) Add Tests ++++
+
+Task1:
+1) Use RegExpression
+2) Refactor
+3) Add tests
+
+Habr Exeption
+1) add from 1 webpage ++++
+2) add from 2 webpage

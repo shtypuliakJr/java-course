@@ -2,8 +2,9 @@ package controllers;
 
 
 import models.Model;
+import models.exception.LoginExistException;
 import sun.util.locale.LocaleSyntaxException;
-import user.User;
+import models.user.User;
 import views.TextConstant;
 import views.View;
 
@@ -15,7 +16,7 @@ import java.util.Scanner;
  * @author Arthur Shtypuliak
  * @version 1.3
  * @see View
- * @see user.User
+ * @see models.user.User
  * @see Model
  * @since 1.0
  * {@link Controller} gets information from input and check it (validate).
@@ -26,6 +27,8 @@ public class Controller {
 
     private final View view;
     private final Model model;
+    private final Scanner scanner = new Scanner(System.in);
+
 
     public Controller(View view, Model model) {
         this.view = view;
@@ -34,49 +37,28 @@ public class Controller {
 
     public void startRegistration() {
 
-        Scanner scanner = new Scanner(System.in);
-        UserRegistrationForm userRegistrationForm = new UserRegistrationForm(scanner, view);
-        model.createUserList();
+        View.setLocale(new LocaleChecker(view).getLocaleFromInput(scanner));
+        view.printMainTask(TextConstant.MAIN_TASK);
 
-        view.setLocale(getLocaleFromInput(scanner));
+        User user = new UserRegistrationForm(scanner, view).registerUser();
+        addUserToDatabase(user);
 
-        view.printMessage(TextConstant.MAIN_TASK);
-
-        User user = userRegistrationForm.registerUser();
-        model.addUser(user);
         view.printUserData(user);
-
-        view.printMessage(TextConstant.SUCCESSFUL_REGISTRATION);
     }
 
-    public Locale getLocaleFromInput(Scanner scanner) {
-
-        Locale locale;
-
-        do {
-            view.printEnterLanguage();
-            locale = getLocale(scanner.nextLine());
-        } while (locale == null);
-
-        return locale;
-    }
-
-    public Locale getLocale(String dataInput) {
-        try {
-            return checkLanguageInput(dataInput);
-        } catch (LocaleSyntaxException exception) {
-            view.printWrongLocale(exception.getMessage());
+    private void addUserToDatabase(User user) {
+        while (true) {
+            try {
+                model.addUser(user);
+                view.printSuccessfulRegistration(TextConstant.SUCCESSFUL_REGISTRATION);
+                return;
+            } catch (LoginExistException e) {
+                view.printLoginIsTaken(TextConstant.DATA_ERROR_LOGIN_TAKEN);
+                String login = new UserDataChecker(scanner, view).getUserDataInput(RegExpression.LOGIN, TextConstant.DATA_TYPE_LOGIN);
+                user.setLogin(login);
+            }
         }
-        return null;
     }
 
-    public Locale checkLanguageInput(String language) throws LocaleSyntaxException {
 
-        if (language.equals("en")) {
-            return new Locale("en");
-        } else if (language.equals("ua")) {
-            return new Locale("ua", "UA");
-        }
-        throw new LocaleSyntaxException("Wrong entered locale");
-    }
 }
