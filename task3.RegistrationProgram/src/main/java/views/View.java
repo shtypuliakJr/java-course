@@ -40,7 +40,7 @@ public class View {
     }
 
     public void printWrongInput(String dataType) {
-        System.out.printf(bundle.getString(TextConstant.WRONG_INPUT) + " " + bundle.getString(TextConstant.ENTER_DATA), bundle.getString(dataType));
+        System.out.printf(bundle.getString(TextConstant.WRONG_INPUT) + " " + bundle.getString(TextConstant.ENTER_DATA) + " ", bundle.getString(dataType));
     }
 
     public void printLoginIsTaken(String message) {

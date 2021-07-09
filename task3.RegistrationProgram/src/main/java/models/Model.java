@@ -13,7 +13,10 @@ import models.user.User;
  */
 public class Model {
     public boolean addUser(User user) throws LoginExistException {
-        return checkUserLoginInDB(user);
+        if (checkUserLoginInDB(user)) {
+            return true;
+        }
+        throw new LoginExistException();
     }
 
     public boolean checkUserLoginInDB(User user) throws LoginExistException {

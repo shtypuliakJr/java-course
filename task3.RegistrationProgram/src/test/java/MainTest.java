@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 
 public class MainTest {
+
     @Test
     @EnabledOnOs(OS.LINUX)
     public void testMainTaskEN() {
@@ -15,6 +16,7 @@ public class MainTest {
         System.setIn(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
         bootstrapper.start();
     }
+
     @Test
     @EnabledOnOs(OS.LINUX)
     public void testMainTaskUA() {

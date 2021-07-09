@@ -47,9 +47,10 @@ public class Controller {
     private void addUserToDatabase(User user) {
         while (true) {
             try {
-                model.addUser(user);
-                view.printSuccessfulRegistration(TextConstant.SUCCESSFUL_REGISTRATION);
-                return;
+                if (model.addUser(user)) {
+                    view.printSuccessfulRegistration(TextConstant.SUCCESSFUL_REGISTRATION);
+                    return;
+                }
             } catch (LoginExistException e) {
                 view.printLoginIsTaken(TextConstant.DATA_ERROR_LOGIN_TAKEN);
                 String login = new UserDataChecker(scanner, view).getUserDataInput(RegExpression.LOGIN, TextConstant.DATA_TYPE_LOGIN);
@@ -57,6 +58,4 @@ public class Controller {
             }
         }
     }
-
-
 }
