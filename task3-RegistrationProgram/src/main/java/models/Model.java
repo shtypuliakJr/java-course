@@ -13,29 +13,21 @@ import models.user.User;
  */
 public class Model {
     public boolean addUser(User user) throws LoginExistException {
-        if (checkUserLoginInDB(user)) {
-            return true;
-        }
-        throw new LoginExistException();
-    }
 
-    public boolean checkUserLoginInDB(User user) throws LoginExistException {
-
-        if (checkLoginIsNotExist(user.getLogin())) {
+        if (!checkLoginExistInDB(user.getLogin())) {
             // add user
-
             return true;
-        }
 
+        }
         throw new LoginExistException();
     }
 
-    public static boolean checkLoginIsNotExist(String loginData) {
-        for (UserDB user : UserDB.values()) {
-            if (user.getLogin().equals(loginData)) {
-                return false;
-            }
+    public boolean checkLoginExistInDB(String login) throws LoginExistException{
+        boolean isLoginExists = UserDB.Request.Create.checkLoginExist(login);
+
+        if (isLoginExists) {
+            throw new LoginExistException();
         }
-        return true;
+        return false;
     }
 }

@@ -17,4 +17,16 @@ public enum UserDB {
     public String getLogin() {
         return login;
     }
+    public enum Request {;
+        public static class Create {
+            public static boolean checkLoginExist(String userLogin) {
+                for (UserDB user : UserDB.values()) {
+                    if (user.getLogin().equals(userLogin)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+    }
 }
