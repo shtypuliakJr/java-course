@@ -1,4 +1,4 @@
-package edu.lesson2.TestGameRandom;
+package lesson2.TestGameRandom;
 
 import edu.lesson2.GameRandom.Controller;
 import edu.lesson2.GameRandom.Model;
