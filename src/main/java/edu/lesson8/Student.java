@@ -1,7 +1,10 @@
 package edu.lesson8;
 
-import java.util.Objects;
-
+/**
+ * @author Arthur Shtypuliak
+ * @see Exam
+ * @since 12.07.2021
+ */
 public class Student implements Cloneable {
     private String name;
     private int age;
@@ -17,20 +20,20 @@ public class Student implements Cloneable {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getGroup() {
         return group;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public void setGroup(String group) {

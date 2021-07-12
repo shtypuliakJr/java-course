@@ -1,7 +1,12 @@
 package edu.lesson8;
 
-import java.time.LocalDate;
 import java.util.Date;
+
+/**
+ * @author Arthur Shtypuliak
+ * @since 12.07.2021
+ * @see Student
+ */
 
 public final class Exam {
     private final int examClassNumber;
@@ -11,7 +16,7 @@ public final class Exam {
 
     public Exam(int examClassNumber, Date date, Student student, String examName) {
         this.examClassNumber = examClassNumber;
-        this.date = date;
+        this.date = (Date) date.clone();
         this.student = (Student) student.clone();
         this.examName = examName;
     }
