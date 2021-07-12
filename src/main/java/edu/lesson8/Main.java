@@ -5,6 +5,12 @@ import edu.lesson8.student.Student;
 
 import java.util.Date;
 
+/**
+ * @author Arthur Shtypuliak
+ * @since 12.07.2021
+ * @see Student
+ * @see Exam
+ */
 public class Main {
 
     public static void main(String[] args) {
