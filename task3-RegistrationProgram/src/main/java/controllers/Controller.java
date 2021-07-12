@@ -2,7 +2,7 @@ package controllers;
 
 
 import models.Model;
-import models.exception.LoginExistException;
+import models.exceptions.LoginExistException;
 import models.user.User;
 import views.TextConstant;
 import views.View;

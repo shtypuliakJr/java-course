@@ -35,7 +35,7 @@ public class LocaleChecker {
         return null;
     }
 
-    private Locale checkLanguageInput(String language) throws LocaleSyntaxException {
+    private Locale checkLanguageInput(String language) {
 
         if (language.equals("en")) {
             return new Locale("en");

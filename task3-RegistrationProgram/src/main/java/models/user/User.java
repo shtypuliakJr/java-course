@@ -14,31 +14,32 @@ import java.util.GregorianCalendar;
  */
 public class User {
 
-    private String name = null;
-    private String surname = null;
-    private String patronymic = null;
+    private String name;
+    private String surname;
+    private String patronymic;
 
-    private String fullName = null;
+    private String fullName;
 
-    private String login = null;
+    private String login;
 
-    private String comment = null;
+    private String comment;
 
-    private Group group = null;
+    private Group group;
 
-    private String homeTelephone = null;
-    private String mobileTelephone = null;
-    private String mobileTelephoneAdditional = null;
+    private String homeTelephone;
+    private String mobileTelephone;
+    private String mobileTelephoneAdditional;
 
-    private String email = null;
+    private String email;
 
-    private String skypeLogin = null;
+    private String skypeLogin;
 
-    private Address address = null;
-    private String fullAddress = null;
+    private Address address;
+    private String fullAddress;
 
-    private GregorianCalendar creationDate = null;
-    private GregorianCalendar lastChangeDate = null;
+    private GregorianCalendar creationDate;
+    private GregorianCalendar lastChangeDate;
+
 
     public String getSurname() {
         return surname;

@@ -18,7 +18,6 @@ public enum UserDB {
         return login;
     }
     public enum Request {;
-        public static class Create {
             public static boolean checkLoginExist(String userLogin) {
                 for (UserDB user : UserDB.values()) {
                     if (user.getLogin().equals(userLogin)) {
@@ -29,4 +28,4 @@ public enum UserDB {
             }
         }
     }
-}
+

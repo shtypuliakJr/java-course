@@ -1,6 +1,6 @@
 package models;
 
-import models.exception.LoginExistException;
+import models.exceptions.LoginExistException;
 import models.user.User;
 
 
@@ -12,7 +12,7 @@ import models.user.User;
  * UserModel is used as model part of program, which contains all users and process them
  */
 public class Model {
-    public boolean addUser(User user) throws LoginExistException {
+    public boolean addUser(User user) {
 
         if (!checkLoginExistInDB(user.getLogin())) {
             // add user
@@ -22,12 +22,7 @@ public class Model {
         throw new LoginExistException();
     }
 
-    public boolean checkLoginExistInDB(String login) throws LoginExistException{
-        boolean isLoginExists = UserDB.Request.Create.checkLoginExist(login);
-
-        if (isLoginExists) {
-            throw new LoginExistException();
-        }
-        return false;
+    public boolean checkLoginExistInDB(String login) {
+        return UserDB.Request.checkLoginExist(login);
     }
 }
