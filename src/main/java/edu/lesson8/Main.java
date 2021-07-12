@@ -2,6 +2,12 @@ package edu.lesson8;
 
 import java.util.Date;
 
+/**
+ * @author Arthur Shtypuliak
+ * @since 12.07.2021
+ * @see Student
+ * @see Exam
+ */
 public class Main {
     public static void main(String[] args) {
         Student student = new Student("Name_1",20, "Group_1");
