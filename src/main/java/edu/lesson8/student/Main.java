@@ -1,7 +1,4 @@
-package edu.lesson8;
-
-import edu.lesson8.immutable.Exam;
-import edu.lesson8.student.Student;
+package edu.lesson8.student;
 
 import java.util.Date;
 

@@ -1,6 +1,4 @@
-package edu.lesson8.immutable;
-
-import edu.lesson8.student.Student;
+package edu.lesson8.student;
 
 import java.util.Date;
 

@@ -1,6 +1,4 @@
-package edu.lesson8;
-
-import java.util.Objects;
+package edu.lesson8.student;
 
 public class Student implements Cloneable {
     private String name;
