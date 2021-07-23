@@ -1,10 +1,7 @@
 package edu.lesson13;
 
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Streams {
     public static void main(String[] args) {
@@ -18,7 +15,7 @@ public class Streams {
 
         // ToDo: 2. Найти минимальный элемент, значение и индекс
         IntStream.range(0, ints.length).boxed()
-                .reduce((i,j) -> ints[i] > ints[j] ? j : i)
+                .reduce((i, j) -> ints[i] > ints[j] ? j : i)
                 .ifPresent(min -> {
                     System.out.println("Task 2: ");
                     System.out.println("\tMin element = " + ints[min]);
