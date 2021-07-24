@@ -12,10 +12,12 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
 
     transient T[] elementData;
 
+    @SuppressWarnings("unchecked")
     public MyArrayListImpl() {
         this.elementData = (T[]) new Object[DEFAULT_SIZE];
     }
 
+    @SuppressWarnings("unchecked")
     public MyArrayListImpl(int initialCapacity) throws IllegalArgumentException {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Initial capacity less than 0");
@@ -23,7 +25,7 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
         this.elementData = (T[]) new Object[initialCapacity];
     }
 
-    private Iterator<T> iterator = new Iterator<T>() {
+    private final Iterator<T> iterator = new Iterator<T>() {
         private int currentIndex = 0;
 
         @Override
@@ -33,7 +35,7 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
 
         @Override
         public T next() {
-            return (T) elementData[currentIndex++];
+            return elementData[currentIndex++];
         }
     };
 
@@ -43,16 +45,17 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean add(T obj) {
+
         this.currentSize++;
-        if (elementData.length > this.currentSize) {
-            elementData[currentSize - 1] = obj;
-        } else {
+
+        if (elementData.length <= this.currentSize) {
             T[] newArray = (T[]) new Object[elementData.length * 3 / 2 + 1];
             System.arraycopy(elementData, 0, newArray, 0, elementData.length);
             elementData = newArray;
-            elementData[currentSize - 1] = obj;
         }
+        elementData[currentSize - 1] = obj;
         return true;
     }
 
@@ -81,7 +84,7 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
             throw new IndexOutOfBoundsException();
         }
 
-        return (T) elementData[index];
+        return elementData[index];
     }
 
     @Override
