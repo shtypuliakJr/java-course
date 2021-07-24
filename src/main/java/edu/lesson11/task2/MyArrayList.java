@@ -1,6 +1,8 @@
 package edu.lesson11.task2;
 
-public interface MyArrayList<T> {
+import java.io.Serializable;
+
+public interface MyArrayList<T> extends Iterable<T>, Serializable {
     boolean add(T obj);
 
     boolean add(int index, T obj);

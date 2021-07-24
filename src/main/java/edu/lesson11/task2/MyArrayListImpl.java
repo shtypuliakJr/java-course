@@ -1,11 +1,11 @@
 package edu.lesson11.task2;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
-public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
+public class MyArrayListImpl<T> implements MyArrayList<T> {
 
     private static final int DEFAULT_SIZE = 10;
 
@@ -157,6 +157,10 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
         } catch (ClassCastException e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator<>(Arrays.copyOf(elementData, size()));
     }
 }

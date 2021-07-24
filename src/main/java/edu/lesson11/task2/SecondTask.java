@@ -46,6 +46,9 @@ public class SecondTask {
         }
         System.out.println("\n\ncapacity = " + myArrayList.capacity());
         System.out.println("size = " + myArrayList.size());
-
+        System.out.println();
+        for (Integer element : myArrayList) {
+            System.out.print(element + " ");
+        }
     }
 }
