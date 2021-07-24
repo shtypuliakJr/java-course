@@ -32,20 +32,6 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
         }
     }
 
-    private final Iterator<T> iterator = new Iterator<T>() {
-        private int currentIndex = 0;
-
-        @Override
-        public boolean hasNext() {
-            return currentIndex < currentSize && elementData[currentIndex] != null;
-        }
-
-        @Override
-        public T next() {
-            return elementData[currentIndex++];
-        }
-    };
-
     @Override
     public int capacity() {
         return elementData.length;
