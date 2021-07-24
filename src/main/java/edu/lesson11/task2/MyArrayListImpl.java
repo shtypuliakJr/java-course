@@ -57,12 +57,12 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
         this.currentSize++;
 
         if (elementData.length <= this.currentSize) {
-            T[] newArray = null;
+            T[] newArray;
             try {
                 newArray = (T[]) new Object[elementData.length * 3 / 2 + 1];
                 System.arraycopy(elementData, 0, newArray, 0, elementData.length);
                 elementData = newArray;
-            } catch (Exception e) {
+            } catch (ClassCastException e) {
                 e.printStackTrace();
             }
         }
@@ -105,7 +105,11 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
 
     @Override
     public void ensureCapacity(int minCapacity) {
-        elementData = Arrays.copyOf(elementData, minCapacity);
+        if (size() > minCapacity) {
+            elementData = Arrays.copyOf(elementData, size());
+        } else {
+            elementData = Arrays.copyOf(elementData, minCapacity);
+        }
     }
 
     @Override
@@ -121,7 +125,7 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
 
     @Override
     public T set(int index, T obj) {
-        if (index >= capacity() && index < 0) {
+        if (index >= capacity() || index < 0) {
             throw new IndexOutOfBoundsException();
         }
 
