@@ -2,6 +2,9 @@ package edu.lesson11.task2;
 
 // ToDo Написать реализацию коллекции (например, ArrayList) в которую можно добавлять данные и нельзя удалять.
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SecondTask {
     public static void main(String[] args) {
         MyArrayList<Integer> myArrayList = new MyArrayListImpl<>();
@@ -9,7 +12,11 @@ public class SecondTask {
         System.out.println("capacity = " + myArrayList.capacity());
         System.out.println("size = " + myArrayList.size());
 
-        System.out.println("get element by index in empty arraylist = " + myArrayList.get(5));
+        try {
+            System.out.println(myArrayList.get(5));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("get element by index in empty arraylist = " + e.getCause());;
+        }
 
         for (int i = 0; i < 10; i+=2) {
             myArrayList.add(i);

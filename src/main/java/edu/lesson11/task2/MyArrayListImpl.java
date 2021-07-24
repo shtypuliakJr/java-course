@@ -1,71 +1,73 @@
 package edu.lesson11.task2;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Iterator;
 
-public class MyArrayListImpl<Type> implements MyArrayList<Type>, Serializable {
+public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
 
     private static final int DEFAULT_SIZE = 10;
 
     private int currentSize = 0;
 
-    transient Object[] array;
+    transient T[] elementData;
 
     public MyArrayListImpl() {
-        this.array = (Type[]) new Object[DEFAULT_SIZE];
+        this.elementData = (T[]) new Object[DEFAULT_SIZE];
     }
-    public MyArrayListImpl(int initialCapacity) throws IllegalArgumentException{
+
+    public MyArrayListImpl(int initialCapacity) throws IllegalArgumentException {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Initial capacity less than 0");
         }
-        this.array = (Type[]) new Object[initialCapacity];
+        this.elementData = (T[]) new Object[initialCapacity];
     }
 
-    private Iterator<Type> iterator = new Iterator<Type>() {
+    private Iterator<T> iterator = new Iterator<T>() {
         private int currentIndex = 0;
 
         @Override
         public boolean hasNext() {
-            return currentIndex < currentSize && array[currentIndex] != null;
+            return currentIndex < currentSize && elementData[currentIndex] != null;
         }
 
         @Override
-        public Type next() {
-            return (Type) array[currentIndex++];
+        public T next() {
+            return (T) elementData[currentIndex++];
         }
     };
 
     @Override
     public int capacity() {
-        return array.length;
+        return elementData.length;
     }
 
     @Override
-    public void add(Type obj) {
+    public boolean add(T obj) {
         this.currentSize++;
-        if (array.length > this.currentSize) {
-            array[currentSize - 1] = obj;
+        if (elementData.length > this.currentSize) {
+            elementData[currentSize - 1] = obj;
         } else {
-            Type[] newArray = (Type[]) new Object[array.length * 3 / 2 + 1];
-            System.arraycopy(array, 0, newArray, 0, array.length);
-            array = newArray;
-            array[currentSize - 1] = obj;
+            T[] newArray = (T[]) new Object[elementData.length * 3 / 2 + 1];
+            System.arraycopy(elementData, 0, newArray, 0, elementData.length);
+            elementData = newArray;
+            elementData[currentSize - 1] = obj;
         }
+        return true;
     }
 
     @Override
-    public void add(int index, Type obj) {
+    public boolean add(int index, T obj) {
         if (index >= this.capacity() && index < 0) {
             throw new IndexOutOfBoundsException();
         }
         currentSize++;
-        if (array[index] == null) {
-            array[index] = obj;
-        } else if (array.length > currentSize) {
-            Type[] bufType = (Type[]) new Object[array.length];
-
+        if (elementData[index] == null) {
+            elementData[index] = obj;
+        } else if (elementData.length > currentSize) {
+            System.arraycopy(elementData, index, elementData, index + 1, this.currentSize - index);
         }
-
+        return true;
     }
 
     @Override
@@ -74,15 +76,59 @@ public class MyArrayListImpl<Type> implements MyArrayList<Type>, Serializable {
     }
 
     @Override
-    public Type get(int index) {
-        if (this.currentSize != 0 && index >= 0 && index < this.currentSize) {
-            return (Type) array[index];
+    public T get(int index) {
+        if (!(index >= 0 && index < this.currentSize)) {
+            throw new IndexOutOfBoundsException();
         }
-        return null;
+
+        return (T) elementData[index];
     }
 
     @Override
-    public boolean remove(Type obj) {
+    public boolean remove(T obj) {
         return false;
     }
+
+    @Override
+    public void ensureCapacity(int minCapacity) {
+        elementData = Arrays.copyOf(elementData, minCapacity);
+    }
+
+    @Override
+    public void trimToSize() {
+        elementData = Arrays.copyOf(elementData, size());
+
+    }
+
+    @Override
+    public void clear() {
+        Arrays.fill(elementData, null);
+    }
+
+    @Override
+    public T set(int index, T obj) {
+        if (index >= capacity() && index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        T bufElement = elementData[index];
+        elementData[index] = obj;
+
+        return bufElement;
+    }
+
+    @Override
+    public int indexOf(T obj) {
+
+        if (obj == null)
+            throw new NullPointerException();
+
+        for (int i = 0; i < size(); i++) {
+            if (elementData[i] == obj) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }

@@ -1,10 +1,25 @@
 package edu.lesson11.task2;
 
-public interface MyArrayList<Type>{
-    void add(Type obj);
-    void add(int index, Type obj);
+public interface MyArrayList<T> {
+    boolean add(T obj);
+
+    boolean add(int index, T obj);
+
     int size();
-    Type get(int index);
+
+    T get(int index);
+
     int capacity();
-    boolean remove(Type obj);
+
+    boolean remove(T obj);
+
+    void ensureCapacity(int minCapacity);
+
+    void trimToSize();
+
+    void clear();
+
+    T set(int index, T obj);
+
+    int indexOf(T obj);
 }
