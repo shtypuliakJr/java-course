@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 
+@SuppressWarnings({"unchecked", "unused"})
 public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
 
     private static final int DEFAULT_SIZE = 10;
@@ -12,12 +13,10 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
 
     transient T[] elementData;
 
-    @SuppressWarnings("unchecked")
     public MyArrayListImpl() {
         this.elementData = (T[]) new Object[DEFAULT_SIZE];
     }
 
-    @SuppressWarnings("unchecked")
     public MyArrayListImpl(int initialCapacity) throws IllegalArgumentException {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Initial capacity less than 0");
@@ -45,7 +44,6 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public boolean add(T obj) {
 
         this.currentSize++;
