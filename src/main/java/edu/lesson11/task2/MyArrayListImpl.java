@@ -161,15 +161,16 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
         try {
             T[] newArray = (T[]) new Object[capacity()];
 
-            for (int i = 0, j = 0; i < size(); i++) {
-                if (!(i == index)) {
-                    newArray[j++] = elementData[i];
-                }
-            }
+            System.arraycopy(elementData, 0, newArray, 0, index);
+            System.arraycopy(elementData, index + 1, newArray, index, size() - index - 1);
+
             this.currentSize--;
+
             elementData = newArray;
 
-        } catch (ClassCastException e) { }
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
 
     }
 }
