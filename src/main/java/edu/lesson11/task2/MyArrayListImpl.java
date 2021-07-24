@@ -149,4 +149,27 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
         return -1;
     }
 
+    @Override
+    public void delete(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (size() == 0) {
+            throw new NullPointerException();
+        }
+
+        try {
+            T[] newArray = (T[]) new Object[capacity()];
+
+            for (int i = 0, j = 0; i < size(); i++) {
+                if (!(i == index)) {
+                    newArray[j++] = elementData[i];
+                }
+            }
+            this.currentSize--;
+            elementData = newArray;
+
+        } catch (ClassCastException e) { }
+
+    }
 }

@@ -39,5 +39,12 @@ public class SecondTask {
         System.out.println("\n\ncapacity = " + myArrayList.capacity());
         System.out.println("size = " + myArrayList.size());
 
+        myArrayList.delete(2);
+        for (int i = 0; i < myArrayList.size(); i++) {
+            System.out.print(myArrayList.get(i) + " ");
+        }
+        System.out.println("\n\ncapacity = " + myArrayList.capacity());
+        System.out.println("size = " + myArrayList.size());
+
     }
 }

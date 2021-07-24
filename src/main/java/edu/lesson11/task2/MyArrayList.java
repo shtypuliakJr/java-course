@@ -22,4 +22,6 @@ public interface MyArrayList<T> {
     T set(int index, T obj);
 
     int indexOf(T obj);
+
+    void delete(int index);
 }
