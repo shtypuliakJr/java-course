@@ -14,14 +14,22 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
     transient T[] elementData;
 
     public MyArrayListImpl() {
-        this.elementData = (T[]) new Object[DEFAULT_SIZE];
+        try {
+            this.elementData = (T[]) new Object[DEFAULT_SIZE];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public MyArrayListImpl(int initialCapacity) throws IllegalArgumentException {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Initial capacity less than 0");
         }
-        this.elementData = (T[]) new Object[initialCapacity];
+        try {
+            this.elementData = (T[]) new Object[initialCapacity];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private final Iterator<T> iterator = new Iterator<T>() {
@@ -49,9 +57,14 @@ public class MyArrayListImpl<T> implements MyArrayList<T>, Serializable {
         this.currentSize++;
 
         if (elementData.length <= this.currentSize) {
-            T[] newArray = (T[]) new Object[elementData.length * 3 / 2 + 1];
-            System.arraycopy(elementData, 0, newArray, 0, elementData.length);
-            elementData = newArray;
+            T[] newArray = null;
+            try {
+                newArray = (T[]) new Object[elementData.length * 3 / 2 + 1];
+                System.arraycopy(elementData, 0, newArray, 0, elementData.length);
+                elementData = newArray;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         elementData[currentSize - 1] = obj;
         return true;
