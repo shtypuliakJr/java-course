@@ -1,4 +1,4 @@
-package edu.lesson11.task2;
+package edu.lesson11.task2.collections.arraylist;
 
 import java.util.Iterator;
 

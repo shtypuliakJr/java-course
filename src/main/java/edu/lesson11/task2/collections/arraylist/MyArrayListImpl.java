@@ -1,8 +1,7 @@
-package edu.lesson11.task2;
+package edu.lesson11.task2.collections.arraylist;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
 public class MyArrayListImpl<T> implements MyArrayList<T> {

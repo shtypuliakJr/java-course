@@ -1,6 +1,7 @@
-package edu.lesson11.task2;
+package edu.lesson11.task2.collections;
 
-// ToDo Написать реализацию коллекции (например, ArrayList) в которую можно добавлять данные и нельзя удалять.
+import edu.lesson11.task2.collections.arraylist.MyArrayList;
+import edu.lesson11.task2.collections.arraylist.MyArrayListImpl;
 
 public class SecondTask {
     public static void main(String[] args) {
