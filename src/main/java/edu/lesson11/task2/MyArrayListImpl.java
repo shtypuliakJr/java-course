@@ -1,17 +1,24 @@
 package edu.lesson11.task2;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
-public class MyArrayListImpl<Type> implements MyArrayList<Type> {
+public class MyArrayListImpl<Type> implements MyArrayList<Type>, Serializable {
 
-    private final int DEFAULT_SIZE = 10;
+    private static final int DEFAULT_SIZE = 10;
 
     private int currentSize = 0;
 
-    private Type[] array;
+    transient Object[] array;
 
     public MyArrayListImpl() {
         this.array = (Type[]) new Object[DEFAULT_SIZE];
+    }
+    public MyArrayListImpl(int initialCapacity) throws IllegalArgumentException{
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Initial capacity less than 0");
+        }
+        this.array = (Type[]) new Object[initialCapacity];
     }
 
     private Iterator<Type> iterator = new Iterator<Type>() {
@@ -24,7 +31,7 @@ public class MyArrayListImpl<Type> implements MyArrayList<Type> {
 
         @Override
         public Type next() {
-            return array[currentIndex++];
+            return (Type) array[currentIndex++];
         }
     };
 
@@ -39,13 +46,26 @@ public class MyArrayListImpl<Type> implements MyArrayList<Type> {
         if (array.length > this.currentSize) {
             array[currentSize - 1] = obj;
         } else {
-            Type[] newArray = (Type[]) new Object[array.length + array.length / 2 + 1];
-            for (int i = 0; i < array.length; i++) {
-                newArray[i] = array[i];
-            }
+            Type[] newArray = (Type[]) new Object[array.length * 3 / 2 + 1];
+            System.arraycopy(array, 0, newArray, 0, array.length);
             array = newArray;
             array[currentSize - 1] = obj;
         }
+    }
+
+    @Override
+    public void add(int index, Type obj) {
+        if (index >= this.capacity() && index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        currentSize++;
+        if (array[index] == null) {
+            array[index] = obj;
+        } else if (array.length > currentSize) {
+            Type[] bufType = (Type[]) new Object[array.length];
+
+        }
+
     }
 
     @Override
@@ -56,8 +76,13 @@ public class MyArrayListImpl<Type> implements MyArrayList<Type> {
     @Override
     public Type get(int index) {
         if (this.currentSize != 0 && index >= 0 && index < this.currentSize) {
-            return array[index];
+            return (Type) array[index];
         }
         return null;
+    }
+
+    @Override
+    public boolean remove(Type obj) {
+        return false;
     }
 }

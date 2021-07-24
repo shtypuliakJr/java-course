@@ -23,5 +23,17 @@ public class SecondTask {
         System.out.println("\n\ncapacity = " + myArrayList.capacity());
         System.out.println("size = " + myArrayList.size());
 
+        for (int i = 0; i < 10; i+=2) {
+            myArrayList.add(i);
+        }
+
+        System.out.println("\nGetting elements from arraylist 2:");
+        for (int i = 0; i < myArrayList.size(); i++) {
+            System.out.print(myArrayList.get(i) + " ");
+        }
+
+        System.out.println("\n\ncapacity = " + myArrayList.capacity());
+        System.out.println("size = " + myArrayList.size());
+
     }
 }
