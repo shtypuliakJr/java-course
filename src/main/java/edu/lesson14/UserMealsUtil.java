@@ -22,16 +22,15 @@ public class UserMealsUtil {
 
         userMealWithExceeds.forEach(System.out::println);
 
-
     }
 
     public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
 
         if (mealList == null || startTime == null || endTime == null) {
-            throw new NullPointerException("");
+            throw new NullPointerException();
         }
 
-        Map<LocalDate, Integer> map = getCaloriesByDateImperative(mealList);
+        Map<LocalDate, Integer> map = getCaloriesByDate(mealList);
 
         return mealList.stream()
                 .filter(userMeal -> TimeUtil.isBetween(userMeal.getDateTime().toLocalTime(), startTime, endTime))
@@ -45,7 +44,7 @@ public class UserMealsUtil {
                 ).collect(Collectors.toList());
     }
 
-    public static Map<LocalDate, Integer> getCaloriesByDateImperative(List<UserMeal> mealList) {
+    public static Map<LocalDate, Integer> getCaloriesByDate(List<UserMeal> mealList) {
         Map<LocalDate, Integer> map = new HashMap<>();
 
         for (UserMeal userMeal : mealList) {
@@ -58,7 +57,7 @@ public class UserMealsUtil {
 
     public static Map<LocalDate, Integer> getCaloriesByDateDeclarative(List<UserMeal> mealList) {
         return mealList.stream()
-                .collect(Collectors.groupingBy(o -> o.getDateTime().toLocalDate(),
+                .collect(Collectors.groupingBy(dateTime -> dateTime.getDateTime().toLocalDate(),
                         Collectors.reducing(0, UserMeal::getCalories, Integer::sum)));
     }
 }
