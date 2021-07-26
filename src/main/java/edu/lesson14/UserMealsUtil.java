@@ -1,14 +1,11 @@
 package edu.lesson14;
 
-import edu.lesson4.registrationprogram.user.User;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class UserMealsUtil {
     public static void main(String[] args) {
@@ -34,12 +31,7 @@ public class UserMealsUtil {
             throw new NullPointerException("");
         }
 
-        HashMap<LocalDate, Integer> map = new HashMap<>();
-
-        for (UserMeal userMeal : mealList) {
-            map.computeIfPresent(userMeal.getDateTime().toLocalDate(), (k, value) -> value += userMeal.getCalories());
-            map.putIfAbsent(userMeal.getDateTime().toLocalDate(), userMeal.getCalories());
-        }
+        Map<LocalDate, Integer> map = getCaloriesByDateImperative(mealList);
 
         return mealList.stream()
                 .filter(userMeal -> TimeUtil.isBetween(userMeal.getDateTime().toLocalTime(), startTime, endTime))
@@ -51,5 +43,22 @@ public class UserMealsUtil {
                                 map.get(userMeal.getDateTime().toLocalDate()) > caloriesPerDay
                         )
                 ).collect(Collectors.toList());
+    }
+
+    public static Map<LocalDate, Integer> getCaloriesByDateImperative(List<UserMeal> mealList) {
+        Map<LocalDate, Integer> map = new HashMap<>();
+
+        for (UserMeal userMeal : mealList) {
+            map.computeIfPresent(userMeal.getDateTime().toLocalDate(), (k, value) -> value += userMeal.getCalories());
+            map.putIfAbsent(userMeal.getDateTime().toLocalDate(), userMeal.getCalories());
+        }
+
+        return map;
+    }
+
+    public static Map<LocalDate, Integer> getCaloriesByDateDeclarative(List<UserMeal> mealList) {
+        return mealList.stream()
+                .collect(Collectors.groupingBy(o -> o.getDateTime().toLocalDate(),
+                        Collectors.reducing(0, UserMeal::getCalories, Integer::sum)));
     }
 }
