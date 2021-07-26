@@ -30,14 +30,16 @@ public class UserMealsUtil {
 
     public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
 
+        if (mealList == null || startTime == null || endTime == null) {
+            throw new NullPointerException("");
+        }
+
         HashMap<LocalDate, Integer> map = new HashMap<>();
 
         for (UserMeal userMeal : mealList) {
             map.computeIfPresent(userMeal.getDateTime().toLocalDate(), (k, value) -> value += userMeal.getCalories());
             map.putIfAbsent(userMeal.getDateTime().toLocalDate(), userMeal.getCalories());
         }
-
-        // map.forEach((k, v) -> System.out.println(k + " " + v));
 
         return mealList.stream()
                 .filter(userMeal -> TimeUtil.isBetween(userMeal.getDateTime().toLocalTime(), startTime, endTime))
